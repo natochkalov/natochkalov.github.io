@@ -15,44 +15,32 @@
       flex-direction: column;
       align-items: center;
       overflow: hidden;
-      position: relative;
     }
     .container {
-      max-width: 100%;
+      max-width: 800px;
       margin: auto;
-      padding: 10px;
-      position: relative;
     }
     h1, h2 {
       color: #ff3366;
-      font-size: 2em;
-      text-shadow: 1px 1px #ffffff;
-      margin: 20px 0;
-      text-transform: none;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
+      font-size: 2.5em;
+      text-shadow: 2px 2px #ffffff;
+      margin: 30px 0;
     }
     .buttons {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       margin: 20px 0;
-      width: 100%;
-      max-width: 350px;
     }
     button {
-      width: 100%;
-      padding: 18px;
-      font-size: 1.4em;
+      padding: 15px 30px;
+      font-size: 1.2em;
       border: none;
-      border-radius: 30px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.3s;
       background: #ffffff;
       box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
-    }
-    button:active {
-      transform: scale(0.95);
     }
     #yesBtn {
       background: #ff3366;
@@ -62,27 +50,21 @@
       background: #ffe6e6;
     }
     .gif-container {
-      margin: 20px 0;
+      margin: 30px 0;
       display: none;
       width: 100%;
-      height: auto;
+      height: 50vh;
       position: relative;
     }
     .gif-container video {
       width: 100%;
-      max-width: 400px;
+      height: 100%;
       border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       object-fit: cover;
     }
     .hidden {
       display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    .show {
-      display: block;
-      opacity: 1;
     }
     .hearts {
       position: fixed;
@@ -102,59 +84,59 @@
       0% { transform: translateY(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+    /* Надпись, показываемая только в ветке "да котик ❤️" */
     .love-text {
       font-size: 2.5em;
       color: #ff3366;
       font-weight: bold;
       text-shadow: 3px 3px 10px rgba(255, 51, 102, 0.5);
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
       margin-top: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <!-- Контейнер для падающих эмодзи -->
+  <!-- Падающие эмодзи -->
   <div class="hearts" id="hearts"></div>
   
   <div class="container">
+    <!-- Основной вопрос -->
     <div id="mainQuestion">
       <h1>малышка, будешь со мной няшиться весь день?</h1>
       <div class="buttons">
-        <!-- Кнопка "да котик ❤️" вызывает showYesGif -->
         <button id="yesBtn" onclick="showYesGif('https://files.catbox.moe/d67qlq.mp4')">да котик ❤️</button>
-        <!-- Кнопка "ни..." вызывает показ вопроса "почему? 😢" -->
         <button id="noBtn" onclick="showReasonQuestion()">ни...</button>
       </div>
     </div>
-
-    <!-- Блок вопроса "почему? 😢", отображается после нажатия на "ни..." -->
+    
+    <!-- Блок с вопросом "поч? 😢" (отображается при нажатии "ни...") -->
     <div id="reasonQuestion" class="hidden">
-      <h2>почему? 😢</h2>
+      <h2>поч? 😢</h2>
       <div class="buttons">
-        <button onclick="showNoGif('https://files.catbox.moe/8en7xu.mp4')">потому что я занята...</button>
-        <button onclick="showNoGif('https://files.catbox.moe/823tjz.mp4')">просто так</button>
+        <button onclick="showNoGif('https://files.catbox.moe/8en7xu.mp4')">Потому что я занята...</button>
+        <button onclick="showNoGif('https://files.catbox.moe/823tjz.mp4')">проста так 😎</button>
       </div>
     </div>
-
+    
+    <!-- Контейнер для гифки -->
     <div class="gif-container" id="gifContainer">
-      <video id="gifVideo" autoplay loop muted playsinline>
+      <video autoplay loop muted playsinline>
         <source id="gifSource" src="" type="video/mp4">
-        ваш браузер не поддерживает видео.
+        Ваш браузер не поддерживает видео.
       </video>
     </div>
     
-    <!-- Надпись "я люблю тебя" (показывается только в yes-ветке) -->
+    <!-- Надпись "я люблю тебя" (показывается только в ветке "да котик ❤️") -->
     <div id="loveText" class="love-text">я люблю тебя</div>
-
+    
     <audio id="bgMusic" src="https://files.catbox.moe/your-music.mp3" loop autoplay></audio>
   </div>
-
+  
   <script>
+    // Функция создания 50 падающих эмодзи из массива: "🙂", "😗", "❤️"
     function createHearts() {
       const heartsContainer = document.getElementById('hearts');
-      // Массив эмодзи: красное сердечко, 🙂, 😗
-      const emojis = ['❤️', '🙂', '😗'];
+      const emojis = ['🙂', '😗', '❤️'];
       for (let i = 0; i < 50; i++) {
         const heart = document.createElement('div');
         heart.className = 'heart';
@@ -165,39 +147,40 @@
       }
     }
     
-    // Функция для ветки "да котик ❤️": показывает гифку и надпись "я люблю тебя"
+    // Ветка "да котик ❤️": показывает гифку и надпись "я люблю тебя"
     function showYesGif(url) {
       document.getElementById('mainQuestion').classList.add('hidden');
       document.getElementById('reasonQuestion').classList.add('hidden');
-      const video = document.getElementById('gifVideo');
+      const video = document.querySelector('.gif-container video');
       const source = document.getElementById('gifSource');
       source.src = url;
       video.load();
-      document.getElementById('gifContainer').classList.add('show');
+      document.querySelector('.gif-container').style.display = 'block';
       
-      // Плавное появление надписи "я люблю тебя"
+      // Показ надписи "я люблю тебя" на 4 секунды
       const loveText = document.getElementById('loveText');
-      loveText.style.opacity = "1";
-      setTimeout(() => loveText.style.opacity = "0", 4000);
+      loveText.style.display = 'block';
+      setTimeout(() => { loveText.style.display = 'none'; }, 4000);
     }
     
-    // Функция для ветки "ни...": показывает гифку без надписи "я люблю тебя"
+    // Ветка "ни...": показывает гифку без надписи
     function showNoGif(url) {
       document.getElementById('mainQuestion').classList.add('hidden');
       document.getElementById('reasonQuestion').classList.add('hidden');
-      const video = document.getElementById('gifVideo');
+      const video = document.querySelector('.gif-container video');
       const source = document.getElementById('gifSource');
       source.src = url;
       video.load();
-      document.getElementById('gifContainer').classList.add('show');
+      document.querySelector('.gif-container').style.display = 'block';
     }
     
-    // Показ блока вопроса "почему? 😢" после нажатия "ни..."
+    // Показываем блок с вопросом "поч? 😢" при нажатии "ни..."
     function showReasonQuestion() {
       document.getElementById('mainQuestion').classList.add('hidden');
       document.getElementById('reasonQuestion').classList.remove('hidden');
     }
     
+    // Если "ни..." нажимают слишком много раз, показываем специальную гифку
     let noClicks = 0;
     document.getElementById("noBtn").addEventListener("click", function() {
       noClicks++;
@@ -206,14 +189,8 @@
       }
     });
     
-    const yesTexts = ["точно буду", "уже иду 🥰", "да котик ❤️", "само собой", "без лишних слов", "а ты как думала?", "уже лечу 💨", "даже не спрашивай"];
-    document.getElementById("yesBtn").addEventListener("mouseenter", function() {
-      this.innerHTML = yesTexts[Math.floor(Math.random() * yesTexts.length)];
-    });
-    
     window.onload = function() {
       createHearts();
-      setTimeout(() => document.querySelector('h1').style.opacity = "1", 300);
     };
   </script>
 </body>
