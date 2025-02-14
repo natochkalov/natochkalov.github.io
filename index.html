@@ -121,16 +121,19 @@
     <div id="mainQuestion">
       <h1>малышка, будешь со мной няшиться весь день?</h1>
       <div class="buttons">
-        <button id="yesBtn" onclick="showGif('https://files.catbox.moe/d67qlq.mp4')">да котик ❤️</button>
+        <!-- Кнопка "да котик ❤️" вызывает showYesGif -->
+        <button id="yesBtn" onclick="showYesGif('https://files.catbox.moe/d67qlq.mp4')">да котик ❤️</button>
+        <!-- Кнопка "ни..." вызывает показ вопроса "почему? 😢" -->
         <button id="noBtn" onclick="showReasonQuestion()">ни...</button>
       </div>
     </div>
 
+    <!-- Блок вопроса "почему? 😢", отображается после нажатия на "ни..." -->
     <div id="reasonQuestion" class="hidden">
-      <h2>почему?</h2>
+      <h2>почему? 😢</h2>
       <div class="buttons">
-        <button onclick="showGif('https://files.catbox.moe/8en7xu.mp4')">потому что я занята...</button>
-        <button onclick="showGif('https://files.catbox.moe/823tjz.mp4')">просто так</button>
+        <button onclick="showNoGif('https://files.catbox.moe/8en7xu.mp4')">потому что я занята...</button>
+        <button onclick="showNoGif('https://files.catbox.moe/823tjz.mp4')">просто так</button>
       </div>
     </div>
 
@@ -141,16 +144,16 @@
       </video>
     </div>
     
-    <!-- Надпись "я люблю тебя", расположенная под гифкой -->
+    <!-- Надпись "я люблю тебя" (показывается только в yes-ветке) -->
     <div id="loveText" class="love-text">я люблю тебя</div>
 
     <audio id="bgMusic" src="https://files.catbox.moe/your-music.mp3" loop autoplay></audio>
   </div>
 
   <script>
-    // Функция создания падающих эмодзи (50 штук) из массива с тремя вариантами
     function createHearts() {
       const heartsContainer = document.getElementById('hearts');
+      // Массив эмодзи: красное сердечко, 🙂, 😗
       const emojis = ['❤️', '🙂', '😗'];
       for (let i = 0; i < 50; i++) {
         const heart = document.createElement('div');
@@ -162,7 +165,8 @@
       }
     }
     
-    function showGif(url) {
+    // Функция для ветки "да котик ❤️": показывает гифку и надпись "я люблю тебя"
+    function showYesGif(url) {
       document.getElementById('mainQuestion').classList.add('hidden');
       document.getElementById('reasonQuestion').classList.add('hidden');
       const video = document.getElementById('gifVideo');
@@ -171,12 +175,24 @@
       video.load();
       document.getElementById('gifContainer').classList.add('show');
       
-      // Плавное появление надписи "я люблю тебя" под гифкой
+      // Плавное появление надписи "я люблю тебя"
       const loveText = document.getElementById('loveText');
       loveText.style.opacity = "1";
       setTimeout(() => loveText.style.opacity = "0", 4000);
     }
     
+    // Функция для ветки "ни...": показывает гифку без надписи "я люблю тебя"
+    function showNoGif(url) {
+      document.getElementById('mainQuestion').classList.add('hidden');
+      document.getElementById('reasonQuestion').classList.add('hidden');
+      const video = document.getElementById('gifVideo');
+      const source = document.getElementById('gifSource');
+      source.src = url;
+      video.load();
+      document.getElementById('gifContainer').classList.add('show');
+    }
+    
+    // Показ блока вопроса "почему? 😢" после нажатия "ни..."
     function showReasonQuestion() {
       document.getElementById('mainQuestion').classList.add('hidden');
       document.getElementById('reasonQuestion').classList.remove('hidden');
@@ -186,7 +202,7 @@
     document.getElementById("noBtn").addEventListener("click", function() {
       noClicks++;
       if (noClicks >= 10) {
-        showGif("https://files.catbox.moe/special.mp4");
+        showNoGif("https://files.catbox.moe/special.mp4");
       }
     });
     
