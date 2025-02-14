@@ -2,109 +2,171 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>с днём валентина ❤️ </title>
+    <title>14 февраля ❤️</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', cursive;
+            background: #ffebf0;
             text-align: center;
-            background-color: #ffccf3;
-            color: #333;
             padding: 20px;
-            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             overflow: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #ff3366;
+            font-size: 2.5em;
+            text-shadow: 2px 2px #ffffff;
+            margin: 30px 0;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+        }
+
+        #yesBtn {
+            background: #ff3366;
+            color: white;
+        }
+
+        #noBtn:hover {
+            background: #ffe6e6;
+        }
+
+        .gif-container {
+            margin: 30px 0;
+            display: none;
+            width: 100%;
+            height: 50vh;
             position: relative;
         }
-        h1 {
-            font-size: 2em;
-            color: #ff3385;
-            margin-bottom: 20px;
-        }
-        .text-animation {
-            font-size: 1.5em;
-            color: #ff3385;
-            margin: 20px auto;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid #ff3385;
-            width: 0;
-            animation: typing 4s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: #ff3385; }
-        }
-        .cat {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .heart {
-            color: #ff6666;
-            font-size: 2em;
-            animation: beat 1s infinite;
-        }
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        /* Фон с сердечками */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .gif-container video {
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23ff6666' d='M100 20c-20 0-40 20-40 40 0 40 40 80 40 80s40-40 40-80c0-20-20-40-40-40z'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            opacity: 0.2;
-            z-index: -1;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            object-fit: cover;
         }
-        /* Адаптация текста для мобильных устройств */
-        @media (max-width: 600px) {
-            .text-animation {
-                font-size: 1.2em;
-                white-space: normal;
-                width: 100%;
-                border-right: none;
-                animation: none;
-            }
-            .text-animation::after {
-                content: '';
-                display: inline-block;
-                width: 2px;
-                height: 1em;
-                background-color: #ff3385;
-                animation: blink-caret 0.75s step-end infinite;
-            }
+
+        .hidden {
+            display: none;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff3366;
+            font-size: 24px;
+            animation: float 5s linear infinite;
+            top: -10%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <h1>с днём валентина ❤️ </h1>
-    <div id="text1" class="text-animation">с 14 февраля наточка</div>
-    <video class="cat" autoplay loop muted playsinline>
-        <source src="https://media-hosting.imagekit.io//7a6a1c74a23e4556/1738282620329.mp4?Expires=1832890649&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=AqBXydhuIG5afNFjDqA2ryb7WM-yeocuuhp6JKRCwOmMMvCSHYJaY3oasNV~hKGdd9ZuNata7ZFd80BOF8HC9PK6~Dw6k0l0TkYXrjo2bkbtoplhWOSTYGN2EvU0LB1wv6AUaL-ywfLiL4IIZ-FZgHCiMuMPS6M6hf1l8ZCRmsVoZhxFmp2TgkijNqtKp7VAZDUBYbEVytmH3tL9NM0A1~Cl8567mJaP8pHvLpjD1yN8vgGg7koPYMkfkirZye-lX9N3o4I8nzEiCJfpKVMMcg7eSK5fSVE3gOalvETSdIe7MLlTANs0iQxLp5Gto0pY4z-T67DYZeQi34WPmjctgA__" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-    </video>
-    <div id="text2" class="text-animation" style="animation-delay: 5s;">ты самая лучшая девочка, я люблю тебя, и у тебя все будет хорошо</div>
-    <div class="heart" style="animation-delay: 10s;">❤️</div>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div id="mainQuestion">
+            <h1>  малышка, ты будешь со мной няшиться весь день?  </h1>
+            <div class="buttons">
+                <button id="yesBtn" onclick="showGif('https://files.catbox.moe/d67qlq.mp4')">
+                    конечно буду ❤️
+                </button>
+                <button id="noBtn" onclick="showReasonQuestion()">
+                    Ни...
+                </button>
+            </div>
+        </div>
+
+        <div id="reasonQuestion" class="hidden">
+            <h2>😢 почему?</h2>
+            <div class="buttons">
+                <button onclick="showGif('https://files.catbox.moe/8en7xu.mp4')">
+                    потому что я занята...
+                </button>
+                <button onclick="showGif('https://files.catbox.moe/823tjz.mp4')">
+                    проста так 😎
+                </button>
+            </div>
+        </div>
+
+        <div class="gif-container" id="gifContainer">
+            <video id="gifVideo" autoplay loop muted playsinline>
+                <source id="gifSource" src="" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+    </div>
 
     <script>
-        // Анимация текста
-        const text1 = document.getElementById('text1');
-        const text2 = document.getElementById('text2');
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
 
-        text1.style.animation = 'typing 4s steps(40, end) forwards, blink-caret 0.75s step-end infinite';
-        text2.style.animation = 'typing 6s steps(60, end) forwards, blink-caret 0.75s step-end infinite';
+        function showGif(url) {
+            document.getElementById('mainQuestion').classList.add('hidden');
+            document.getElementById('reasonQuestion').classList.add('hidden');
+            
+            const video = document.getElementById('gifVideo');
+            const source = document.getElementById('gifSource');
+            
+            source.src = url;
+            video.load(); // Перезагрузка видео
+            
+            document.getElementById('gifContainer').style.display = 'block';
+        }
+
+        function showReasonQuestion() {
+            document.getElementById('mainQuestion').classList.add('hidden');
+            document.getElementById('reasonQuestion').classList.remove('hidden');
+        }
+
+        // Запускаем летающие сердечки при загрузке
+        window.onload = createHearts;
     </script>
 </body>
 </html>
